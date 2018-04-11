@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordCredentialsServer",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordCredentialsApi", "PasswordCredentialsApi\PasswordCredentialsApi.csproj", "{AA771F7E-8366-4430-878B-8568B323A84F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenIDConnect", "OpenIDConnect", "{8A577625-EAD6-4C8E-898D-9802EED1F0AD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implicit", "Implicit", "{8A577625-EAD6-4C8E-898D-9802EED1F0AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{A221DF0B-E36E-4615-BA73-B25CA3E15253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{A221DF0B-E36E-4615-BA73-B25CA3E15253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{21722F11-3534-4646-9135-40B42944AB1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{21722F11-3534-4646-9135-40B42944AB1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{C07367DE-06E7-455D-B67F-3F88287314CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csproj", "{C07367DE-06E7-455D-B67F-3F88287314CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

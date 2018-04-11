@@ -14,7 +14,7 @@ namespace Server
         {
             return new List<ApiResource>
             {
-                new ApiResource("openidconnect", "openidconnect_auth_server")
+                new ApiResource("implicit_flow", "implicit_flow_server")
                 {
                     UserClaims = new List<string> { "email" }
                 }
@@ -27,17 +27,15 @@ namespace Server
             {
                 new Client()
                 {
-                    ClientId = "open_client",
-                    ClientName = "Open Client",
-                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
-                    ClientSecrets = {new Secret ("secret".Sha256()) },
+                    ClientId = "implicit_client",
+                    ClientName = "Implicit Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = { "http://localhost:5002/signin-oidc"},
                     PostLogoutRedirectUris = {"http://localhost:5002/signout-callback-oidc"},
                     AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        "openidconnect"
+                        "implicit_flow"
                     },
                     AllowOfflineAccess = true,
                     AllowAccessTokensViaBrowser = true

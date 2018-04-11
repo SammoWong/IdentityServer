@@ -36,12 +36,8 @@ namespace Client
                 options.SignInScheme = "Cookies";
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
-                options.ClientId = "open_client";
-                options.ClientSecret = "secret";
-                options.ResponseType = "id_token code";
-                options.Scope.Add("openidconnect");
+                options.ClientId = "implicit_client";
                 options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
             });
         }
 

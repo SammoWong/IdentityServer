@@ -27,7 +27,9 @@ namespace Server
                     .AddDeveloperSigningCredential()
                     .AddInMemoryApiResources(Config.GetApiResources())
                     .AddInMemoryClients(Config.GetClients())
-                    .AddTestUsers(Config.GetTestUsers().ToList());
+                    .AddTestUsers(Config.GetTestUsers().ToList())
+                    .AddInMemoryIdentityResources(Config.GetIdentityResources());
+
             services.AddMvc();
         }
 
@@ -38,7 +40,8 @@ namespace Server
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
             app.UseMvc();
         }
     }
