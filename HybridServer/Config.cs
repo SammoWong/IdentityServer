@@ -4,9 +4,10 @@ using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Server
+namespace HybridServer
 {
     public class Config
     {
@@ -14,7 +15,10 @@ namespace Server
         {
             return new List<ApiResource>
             {
-                new ApiResource("implicit_flow", "implicit_flow_server")
+                new ApiResource("hybrid_api", "hybrid_api_server")
+                //{
+                //    UserClaims = new List<string> { "email" }
+                //}
             };
         }
 
@@ -24,17 +28,19 @@ namespace Server
             {
                 new Client()
                 {
-                    ClientId = "implicit_client",
-                    ClientName = "Implicit Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientId = "hybrid_client",
+                    ClientName = "Hybrid Client",
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    ClientSecrets = {new Secret("secret".Sha256()) },
                     RedirectUris = { "http://localhost:5002/signin-oidc"},
-                    PostLogoutRedirectUris = {"http://localhost:5002/signout-callback-oidc"},
+                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc"},
                     AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "implicit_flow"
+                        IdentityServerConstants.StandardScopes.Email,
+                        "hybrid_api",
                     },
-                    //AllowOfflineAccess = true,
+                    AllowOfflineAccess = true,
                     AllowAccessTokensViaBrowser = true
                 }
             };
@@ -48,7 +54,11 @@ namespace Server
                 {
                     SubjectId = "1",
                     Username = "username",
-                    Password = "password"
+                    Password = "password",
+                    Claims = new List<Claim>
+                    {
+                        new Claim("email","123456@qq.com"),
+                    }
                 }
             };
         }
@@ -59,6 +69,7 @@ namespace Server
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email(),
             };
         }
     }

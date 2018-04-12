@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Client
+namespace HybridClient
 {
     public class Startup
     {
@@ -23,7 +23,6 @@ namespace Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(options =>
             {
@@ -36,9 +35,14 @@ namespace Client
                 options.SignInScheme = "Cookies";
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
-                options.ClientId = "implicit_client";
-                options.ResponseType = "id_token token";
+                options.ClientId = "hybrid_client";
+                options.ClientSecret = "secret";
+                options.ResponseType = "id_token code";
+                options.Scope.Add("hybrid_api");
+                options.Scope.Add("offline_access");
+                options.Scope.Add("email");
                 options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
             });
         }
 
@@ -54,9 +58,9 @@ namespace Client
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseAuthentication();
-            app.UseStaticFiles();
 
+            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
