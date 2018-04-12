@@ -16,9 +16,9 @@ namespace HybridServer
             return new List<ApiResource>
             {
                 new ApiResource("hybrid_api", "hybrid_api_server")
-                //{
-                //    UserClaims = new List<string> { "email" }
-                //}
+                {
+                    UserClaims = new List<string> { "email" }
+                }
             };
         }
 
