@@ -34,7 +34,6 @@ namespace Api
                         options.Authority = "http://localhost:5000";
                         options.ApiName = "implicit_flow";
                     });
-                    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

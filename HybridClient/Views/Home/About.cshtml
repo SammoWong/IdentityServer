@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Authentication
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@using Microsoft.AspNetCore.Authentication
 <div>
     <strong>id_token</strong>
     <span>@await ViewContext.HttpContext.GetTokenAsync("id_token")</span>
@@ -18,3 +19,14 @@
         <dd>@claim.Value</dd>
     }
 </dl>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:5001/api/values',
+            method: "GET",
+            success: function (data) {
+                alert(data);
+            }
+        });
+    })
+</script>
