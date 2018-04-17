@@ -24,6 +24,10 @@
         $.ajax({
             url: 'http://localhost:5001/api/values',
             method: "GET",
+            xhrFields: {
+                withCredentials: true //配置http跨域请求中携带cookie
+            },
+            crossDomain: true,
             success: function (data) {
                 alert(data);
             }
