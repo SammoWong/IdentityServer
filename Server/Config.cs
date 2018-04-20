@@ -4,6 +4,7 @@ using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Server
@@ -35,7 +36,8 @@ namespace Server
                         "implicit_flow"
                     },
                     //AllowOfflineAccess = true,
-                    AllowAccessTokensViaBrowser = true
+                    AllowAccessTokensViaBrowser = true,
+                    RequireConsent = false //禁用 consent 页面确认
                 }
             };
         }
